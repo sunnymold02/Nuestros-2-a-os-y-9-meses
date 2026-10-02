@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#160b12">
+    <meta name="description" content="Una historia escrita entre dos corazones. J ♡ C">
+
+    <title>J ♡ C — Nuestra Historia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         PANTALLA DE ENTRADA
+    ====================================================== -->
+
+    <div class="opening-screen" id="openingScreen">
+
+        <div class="opening-glow"></div>
+
+        <div class="opening-content">
+
+            <div class="opening-small">
+                UNA HISTORIA ESCRITA ENTRE DOS CORAZONES
+            </div>
+
+            <div class="opening-monogram">
+                <span>J</span>
+                <b>♡</b>
+                <span>C</span>
+            </div>
+
+            <h1>
+                Hay historias que
+                <em>merecen quedarse.</em>
+            </h1>
+
+            <p>
+                Esta es una pequeña parte de todo lo que hemos vivido,
+                sentido y construido juntos.
+            </p>
+
+            <button class="enter-button" id="enterButton">
+                <span>Entrar a nuestra historia</span>
+                <i>♡</i>
+            </button>
+
+        </div>
+
+        <div class="opening-bottom">
+            DESLIZA • RECUERDA • SONRÍE
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FONDO ANIMADO
+    ====================================================== -->
+
+    <canvas id="heartCanvas"></canvas>
+
+    <div class="noise"></div>
+
+
+    <!-- =====================================================
+         BOTÓN DE MÚSICA
+    ====================================================== -->
+
+    <button class="music-button" id="musicButton">
+
+        <span class="music-icon">
+            ♪
+        </span>
+
+        <span class="music-text">
+            Música apagada
+        </span>
+
+        <span class="music-bars">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+
+    </button>
+
+
+    <audio id="bgMusic" loop preload="metadata">
+        <source src="cancion-nueva.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- =====================================================
+         NAVEGACIÓN
+    ====================================================== -->
+
+    <header class="top-navigation">
+
+        <div class="nav-logo">
+            J <span>♡</span> C
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#33meses">33 meses</a>
+            <a href="#historia">Historia</a>
+            <a href="#carta">Carta</a>
+            <a href="#recuerdos">Recuerdos</a>
+        </nav>
+
+    </header>
+
+
+    <main id="inicio">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero-section">
+
+            <div class="hero-decoration hero-decoration-one">♡</div>
+            <div class="hero-decoration hero-decoration-two">♡</div>
+            <div class="hero-decoration hero-decoration-three">✦</div>
+
+            <div class="hero-inner">
+
+                <div class="hero-kicker reveal">
+                    DOS AÑOS • NUEVE MESES
+                </div>
+
+                <div class="hero-monogram reveal">
+                    <span>J</span>
+                    <strong>♡</strong>
+                    <span>C</span>
+                </div>
+
+                <h1 class="hero-title reveal">
+                    Nuestra historia
+                    <br>
+                    <em>todavía se está escribiendo.</em>
+                </h1>
+
+                <p class="hero-description reveal">
+                    33 meses pueden parecer solamente un número.
+                    Para nosotros son miles de momentos, conversaciones,
+                    sonrisas, recuerdos y pequeñas cosas que hicieron
+                    que esta historia se volviera nuestra.
+                </p>
+
+                <a href="#33meses" class="hero-button reveal">
+                    <span>Comenzar el viaje</span>
+                    <b>↓</b>
+                </a>
+
+            </div>
+
+            <div class="hero-side-text">
+                JUNTOS
+                <span>♡</span>
+                SIEMPRE
+            </div>
+
+            <div class="scroll-indicator">
+                <span></span>
+                DESLIZA
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FRASE
+        ================================================== -->
+
+        <section class="quote-section">
+
+            <div class="section-number">
+                01
+            </div>
+
+            <div class="quote-mark">“</div>
+
+            <blockquote class="reveal">
+                De todas las casualidades que pudieron ocurrir,
+                hay una que siempre voy a agradecer:
+                <strong>haberte encontrado.</strong>
+            </blockquote>
+
+            <div class="quote-author reveal">
+                — J ♡ C —
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             33 MESES
+        ================================================== -->
+
+        <section class="months-section" id="33meses">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">
+                    UN NÚMERO QUE GUARDA UNA HISTORIA
+                </span>
+
+                <h2>
+                    <span>33</span>
+                    meses.
+                </h2>
+
+                <p>
+                    Y aunque el tiempo pueda medirse con números,
+                    lo nuestro se mide con recuerdos.
+                </p>
+
+            </div>
+
+
+            <div class="months-grid">
+
+                <div class="month-card reveal">
+                    <div class="card-number">01</div>
+                    <div class="card-icon">♡</div>
+                    <h3>El comienzo</h3>
+                    <p>
+                        Todo tuvo un principio. Un momento que quizá
+                        parecía pequeño, pero que terminó convirtiéndose
+                        en una de las partes más importantes de nuestra historia.
+                    </p>
+                </div>
+
+
+                <div class="month-card featured reveal">
+                    <div class="card-number">33</div>
+                    <div class="card-icon">♥</div>
+                    <h3>Lo que construimos</h3>
+                    <p>
+                        33 meses de aprender, compartir, reír, hablar,
+                        recordar y seguir encontrando razones para valorar
+                        lo que tenemos.
+                    </p>
+                </div>
+
+
+                <div class="month-card reveal">
+                    <div class="card-number">∞</div>
+                    <div class="card-icon">✦</div>
+                    <h3>Lo que sigue</h3>
+                    <p>
+                        Porque esta página no representa un final.
+                        Representa una pausa para mirar atrás y sonreír
+                        antes de continuar escribiendo lo que viene.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="big-counter reveal">
+
+                <div>
+                    <strong>33</strong>
+                    <span>MESES</span>
+                </div>
+
+                <div class="counter-divider">×</div>
+
+                <div>
+                    <strong>1</strong>
+                    <span>HISTORIA</span>
+                </div>
+
+                <div class="counter-divider">×</div>
+
+                <div>
+                    <strong>∞</strong>
+                    <span>RECUERDOS</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NUESTRA HISTORIA
+        ================================================== -->
+
+        <section class="story-section" id="historia">
+
+            <div class="story-intro reveal">
+
+                <span class="eyebrow">
+                    CAPÍTULO I
+                </span>
+
+                <h2>
+                    No fue solamente
+                    <em>el tiempo.</em>
+                </h2>
+
+                <p>
+                    Fue todo lo que ocurrió dentro de él.
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-line"></div>
+
+
+                <article class="timeline-item reveal">
+
+                    <div class="timeline-dot">
+                        ♡
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <span class="timeline-label">
+                            PRIMERA PÁGINA
+                        </span>
+
+                        <h3>
+                            Donde comenzó todo
+                        </h3>
+
+                        <p>
+                            Toda historia importante comienza con algo
+                            que parece sencillo. Una conversación, una
+                            mirada, una coincidencia, una sonrisa...
+                            y de repente dos personas empiezan a formar
+                            una historia que antes no existía.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="timeline-item reverse reveal">
+
+                    <div class="timeline-dot">
+                        ♥
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <span class="timeline-label">
+                            CAPÍTULO II
+                        </span>
+
+                        <h3>
+                            Aprendimos a conocernos
+                        </h3>
+
+                        <p>
+                            Con el tiempo llegaron las conversaciones largas,
+                            las bromas, los momentos inesperados y esas
+                            pequeñas cosas que hacen que una persona deje
+                            de ser solamente alguien y empiece a convertirse
+                            en alguien especial.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="timeline-item reveal">
+
+                    <div class="timeline-dot">
+                        ✦
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <span class="timeline-label">
+                            CAPÍTULO III
+                        </span>
+
+                        <h3>
+                            Los días que se volvieron recuerdos
+                        </h3>
+
+                        <p>
+                            Algunos días fueron increíbles.
+                            Otros seguramente fueron complicados.
+                            Pero todos tuvieron algo en común:
+                            forman parte de nosotros.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="timeline-item reverse reveal">
+
+                    <div class="timeline-dot">
+                            ♡
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <span class="timeline-label">
+                            CAPÍTULO IV
+                        </span>
+
+                        <h3>
+                            Y aquí seguimos
+                        </h3>
+
+                        <p>
+                            Después de 33 meses, la historia continúa.
+                            Y quizá eso sea lo más bonito:
+                            todavía quedan conversaciones por tener,
+                            lugares por conocer, fotografías por tomar
+                            y recuerdos que todavía no existen.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FOTO PRINCIPAL
+        ================================================== -->
+
+        <section class="photo-section" id="recuerdos">
+
+            <div class="photo-background-word">
+                US
+            </div>
+
+            <div class="photo-layout">
+
+                <div class="photo-copy reveal">
+
+                    <span class="eyebrow">
+                        CAPÍTULO II
+                    </span>
+
+                    <h2>
+                        Un momento
+                        <em>nuestro.</em>
+                    </h2>
+
+                    <p>
+                        Hay fotografías que solamente capturan una imagen.
+                        Y hay otras que consiguen guardar una sensación.
+                    </p>
+
+                    <p>
+                        Esta es una de esas pequeñas cápsulas de tiempo
+                        que nos permiten mirar atrás y recordar un momento
+                        que queremos conservar.
+                    </p>
+
+                    <div class="photo-signature">
+                        J <span>♡</span> C
+                    </div>
+
+                </div>
+
+
+                <div class="photo-frame-wrap reveal">
+
+                    <div class="photo-tape tape-left"></div>
+                    <div class="photo-tape tape-right"></div>
+
+                    <div class="photo-frame">
+
+                        <div class="photo-inner">
+
+                            <img
+                                src="foto-nueva.jpg"
+                                alt="Nuestro recuerdo"
+                            >
+
+                        </div>
+
+                        <div class="photo-caption">
+                            <span>J ♡ C</span>
+                            <small>
+                                un recuerdo que queremos guardar
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FRASES
+        ================================================== -->
+
+        <section class="phrases-section">
+
+            <div class="section-heading centered reveal">
+
+                <span class="eyebrow">
+                    PEQUEÑAS VERDADES
+                </span>
+
+                <h2>
+                    Cosas que
+                    <em>quiero recordar.</em>
+                </h2>
+
+            </div>
+
+
+            <div class="phrase-grid">
+
+                <div class="phrase-card reveal">
+                    <span>01</span>
+                    <p>
+                        “No necesito que todos los días sean perfectos.
+                        Solo quiero seguir teniendo días que podamos recordar.”
+                    </p>
+                </div>
+
+                <div class="phrase-card reveal">
+                    <span>02</span>
+                    <p>
+                        “Hay personas que llegan a tu vida y dejan recuerdos.
+                        Y hay personas que llegan y se convierten en parte de ella.”
+                    </p>
+                </div>
+
+                <div class="phrase-card reveal">
+                    <span>03</span>
+                    <p>
+                        “Lo bonito no siempre está en los grandes momentos,
+                        muchas veces está escondido en los pequeños.”
+                    </p>
+                </div>
+
+                <div class="phrase-card reveal">
+                    <span>04</span>
+                    <p>
+                        “Si algún día miramos atrás, espero que recordemos
+                        cuánto nos hizo sonreír esta historia.”
+                    </p>
+                </div>
+
+                <div class="phrase-card reveal">
+                    <span>05</span>
+                    <p>
+                        “33 meses son una cantidad.
+                        Todo lo que sentimos dentro de ellos es otra historia.”
+                    </p>
+                </div>
+
+                <div class="phrase-card special reveal">
+                    <span>♡</span>
+                    <p>
+                        “De todas las páginas de mi vida,
+                        me alegra que exista una donde aparezcamos nosotros.”
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CARTA
+        ================================================== -->
+
+        <section class="letter-section" id="carta">
+
+            <div class="letter-background">
+                CARTA
+            </div>
+
+            <div class="letter-envelope reveal">
+
+                <div class="envelope-top">
+                    <span>PARA TI</span>
+                    <b>♡</b>
+                </div>
+
+                <div class="letter-content">
+
+                    <span class="letter-date">
+                        02 • 10 • 2026
+                    </span>
+
+                    <h2>
+                        Para ti,
+                    </h2>
+
+                    <p>
+                        Hay cosas que a veces cuesta decir en una conversación,
+                        por eso decidí dejarlas aquí.
+                    </p>
+
+                    <p>
+                        Hoy celebramos 2 años y 9 meses.
+                        Treinta y tres meses que, vistos desde lejos,
+                        pueden parecer solamente una cifra.
+                    </p>
+
+                    <p>
+                        Pero nosotros sabemos que dentro de esos meses
+                        existen muchísimas cosas: conversaciones,
+                        risas, momentos inesperados, recuerdos,
+                        días buenos, días difíciles y pequeños instantes
+                        que probablemente nunca aparezcan en ninguna
+                        fotografía.
+                    </p>
+
+                    <p>
+                        Y precisamente esos pequeños momentos son los que
+                        hacen que esta historia sea especial.
+                    </p>
+
+                    <p>
+                        Gracias por cada conversación, por cada sonrisa,
+                        por cada recuerdo y por todas esas veces en las
+                        que simplemente estar ahí hizo que un día cualquiera
+                        se sintiera diferente.
+                    </p>
+
+                    <p>
+                        No sé exactamente qué páginas tendrá nuestra historia
+                        más adelante. Todavía quedan muchísimas por escribir.
+                        Pero sí sé algo:
+                        <strong>me alegra muchísimo que tú formes parte de ella.</strong>
+                    </p>
+
+                    <p>
+                        Feliz 2 años y 9 meses.
+                    </p>
+
+                    <div class="letter-ending">
+                        Con cariño,
+                        <strong>J ♡ C</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             33 RAZONES
+        ================================================== -->
+
+        <section class="reasons-section">
+
+            <div class="section-heading centered reveal">
+
+                <span class="eyebrow">
+                    CAPÍTULO III
+                </span>
+
+                <h2>
+                    33 pequeñas
+                    <em>razones.</em>
+                </h2>
+
+                <p>
+                    No porque necesite contarlas,
+                    sino porque 33 parecía el número perfecto.
+                </p>
+
+            </div>
+
+
+            <div class="reasons-grid">
+
+                <div class="reason reveal">
+                    <span>01</span>
+                    <p>Por las sonrisas que aparecieron de la nada.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>02</span>
+                    <p>Por las conversaciones que no queríamos terminar.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>03</span>
+                    <p>Por los recuerdos que todavía nos hacen sonreír.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>04</span>
+                    <p>Por cada “buenos días”.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>05</span>
+                    <p>Por cada “buenas noches”.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>06</span>
+                    <p>Por las bromas que solamente nosotros entendemos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>07</span>
+                    <p>Por los momentos inesperados.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>08</span>
+                    <p>Por las pequeñas preocupaciones que compartimos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>09</span>
+                    <p>Por aprender cosas nuevas juntos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>10</span>
+                    <p>Por las palabras que llegaron justo a tiempo.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>11</span>
+                    <p>Por los recuerdos que todavía guardamos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>12</span>
+                    <p>Por cada momento que parecía pequeño.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>13</span>
+                    <p>Por las risas inesperadas.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>14</span>
+                    <p>Por todas las veces que nos elegimos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>15</span>
+                    <p>Por los días tranquilos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>16</span>
+                    <p>Por los días que nos hicieron aprender.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>17</span>
+                    <p>Por cada detalle inesperado.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>18</span>
+                    <p>Por todas las veces que nos hicimos sonreír.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>19</span>
+                    <p>Por las historias que tenemos para contar.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>20</span>
+                    <p>Por las que todavía nos faltan.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>21</span>
+                    <p>Por cada recuerdo que merece quedarse.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>22</span>
+                    <p>Por la confianza que fuimos construyendo.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>23</span>
+                    <p>Por las palabras bonitas.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>24</span>
+                    <p>Por las palabras que nos hicieron pensar.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>25</span>
+                    <p>Por los momentos que nunca planeamos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>26</span>
+                    <p>Por los pequeños detalles.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>27</span>
+                    <p>Por todo lo que aprendimos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>28</span>
+                    <p>Por todas las veces que estuvimos presentes.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>29</span>
+                    <p>Por las historias que solamente nosotros conocemos.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>30</span>
+                    <p>Por todo lo que nos queda por descubrir.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>31</span>
+                    <p>Por este capítulo.</p>
+                </div>
+
+                <div class="reason reveal">
+                    <span>32</span>
+                    <p>Por los siguientes capítulos.</p>
+                </div>
+
+                <div class="reason final-reason reveal">
+                    <span>33</span>
+                    <p>Simplemente por ser tú.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECCIÓN MUSICAL
+        ================================================== -->
+
+        <section class="music-section">
+
+            <div class="music-vinyl reveal">
+
+                <div class="vinyl">
+
+                    <div class="vinyl-center">
+                        <span>J</span>
+                        <b>♡</b>
+                        <span>C</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="music-info reveal">
+
+                <span class="eyebrow">
+                    NUESTRA CANCIÓN
+                </span>
+
+                <h2>
+                    Dale play a
+                    <em>nuestro momento.</em>
+                </h2>
+
+                <p>
+                    Porque algunas canciones dejan de ser solamente canciones
+                    cuando empiezan a guardar recuerdos.
+                </p>
+
+                <button class="large-music-button" id="largeMusicButton">
+                    <span class="play-symbol">▶</span>
+                    <span>Reproducir música</span>
+                </button>
+
+                <div class="music-equalizer">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PALABRAS FINALES
+        ================================================== -->
+
+        <section class="final-words-section">
+
+            <div class="final-stars">
+                <span>✦</span>
+                <span>♡</span>
+                <span>✧</span>
+                <span>♡</span>
+                <span>✦</span>
+            </div>
+
+            <div class="final-content reveal">
+
+                <span class="eyebrow">
+                    ÚLTIMA PÁGINA... POR AHORA
+                </span>
+
+                <div class="final-monogram">
+                    J
+                    <span>♡</span>
+                    C
+                </div>
+
+                <h2>
+                    Gracias por estos
+                    <strong>33 meses.</strong>
+                </h2>
+
+                <p>
+                    Por los recuerdos que ya tenemos,
+                    por los momentos que todavía nos quedan
+                    y por todas esas pequeñas cosas que hicieron
+                    que esta historia fuera nuestra.
+                </p>
+
+                <div class="final-line"></div>
+
+                <p class="final-small">
+                    Y si alguna vez volvemos a esta página,
+                    espero que podamos mirar todo esto
+                    y decir:
+                </p>
+
+                <h3>
+                    “Mira todo lo que hemos vivido.”
+                </h3>
+
+                <div class="final-heart">
+                    ♥
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer>
+
+            <div class="footer-logo">
+                J <span>♡</span> C
+            </div>
+
+            <p>
+                2 años • 9 meses • 33 capítulos
+            </p>
+
+            <small>
+                Hecho con cariño para guardar una historia.
+            </small>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================================
+         SCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
