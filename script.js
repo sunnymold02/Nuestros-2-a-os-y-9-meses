@@ -1,382 +1,459 @@
-/* =========================================================
-   J ♡ C — JAVASCRIPT
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const openingScreen = document.getElementById("openingScreen");
-    const enterButton = document.getElementById("enterButton");
-
-    const musicButton = document.getElementById("musicButton");
-    const largeMusicButton = document.getElementById("largeMusicButton");
-    const music = document.getElementById("bgMusic");
-
-    const canvas = document.getElementById("heartCanvas");
-    const ctx = canvas.getContext("2d");
-
-    let musicPlaying = false;
-    let particles = [];
-    let mouse = {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2
-    };
+/* ================================================= */
+/* J ♡ C — NUESTRA HISTORIA                         */
+/* ================================================= */
 
 
-    /* =====================================================
-       ENTRADA
-    ====================================================== */
+/* ================================================= */
+/* ELEMENTOS                                         */
+/* ================================================= */
 
-    document.body.classList.add("locked");
+const openingScreen = document.getElementById("openingScreen");
+const enterButton = document.getElementById("enterButton");
 
-    enterButton.addEventListener("click", () => {
+const musicButton = document.getElementById("musicButton");
+const musicCardButton = document.getElementById("musicCardButton");
 
-        openingScreen.classList.add("hidden");
+const musicText = document.getElementById("musicText");
+const bgMusic = document.getElementById("bgMusic");
 
-        document.body.classList.remove("locked");
-
-        createHeartBurst(
-            window.innerWidth / 2,
-            window.innerHeight / 2,
-            35
-        );
-
-    });
+const canvas = document.getElementById("heartCanvas");
+const ctx = canvas.getContext("2d");
 
 
-    /* =====================================================
-       MÚSICA
-    ====================================================== */
+/* ================================================= */
+/* PANTALLA DE INICIO                                */
+/* ================================================= */
 
-    function updateMusicUI() {
+enterButton.addEventListener("click", () => {
 
-        if (musicPlaying) {
+    openingScreen.classList.add("hidden");
 
-            musicButton.classList.add("playing");
-            musicButton.querySelector(".music-text").textContent =
-                "Música encendida";
+    setTimeout(() => {
 
-            document.body.classList.add("music-playing");
+        document.body.classList.add("site-open");
 
-            largeMusicButton.querySelector("span:last-child").textContent =
-                "Pausar música";
+    }, 500);
 
-            document.querySelector(".music-section")
-                ?.classList.add("playing");
+    startMusic();
 
-        } else {
+});
 
-            musicButton.classList.remove("playing");
-            musicButton.querySelector(".music-text").textContent =
-                "Música apagada";
 
-            document.body.classList.remove("music-playing");
+/* ================================================= */
+/* MÚSICA                                            */
+/* ================================================= */
 
-            largeMusicButton.querySelector("span:last-child").textContent =
-                "Reproducir música";
+let musicPlaying = false;
 
-            document.querySelector(".music-section")
-                ?.classList.remove("playing");
-        }
+
+async function startMusic() {
+
+    try {
+
+        await bgMusic.play();
+
+        musicPlaying = true;
+
+        updateMusicUI();
+
+    } catch (error) {
+
+        musicPlaying = false;
+
+        updateMusicUI();
+
     }
 
+}
 
-    async function toggleMusic() {
 
-        try {
+function toggleMusic() {
 
-            if (music.paused) {
+    if (bgMusic.paused) {
 
-                await music.play();
+        bgMusic.play()
+            .then(() => {
 
                 musicPlaying = true;
 
-            } else {
+                updateMusicUI();
 
-                music.pause();
+            })
+            .catch(() => {
 
                 musicPlaying = false;
 
-            }
+                updateMusicUI();
 
-            updateMusicUI();
+            });
 
-        } catch (error) {
+    } else {
 
-            console.log(
-                "El navegador necesita una interacción para reproducir el audio."
-            );
+        bgMusic.pause();
+
+        musicPlaying = false;
+
+        updateMusicUI();
+
+    }
+
+}
+
+
+function updateMusicUI() {
+
+    if (musicPlaying) {
+
+        musicText.textContent = "Música: Encendida";
+
+        musicButton.classList.add("active");
+
+        document.body.classList.add("music-playing");
+
+        if (musicCardButton) {
+
+            musicCardButton.querySelector(".play-symbol").textContent = "❚❚";
+
+        }
+
+    } else {
+
+        musicText.textContent = "Música: Apagada";
+
+        musicButton.classList.remove("active");
+
+        document.body.classList.remove("music-playing");
+
+        if (musicCardButton) {
+
+            musicCardButton.querySelector(".play-symbol").textContent = "▶";
 
         }
 
     }
 
-
-    musicButton.addEventListener("click", toggleMusic);
-    largeMusicButton.addEventListener("click", toggleMusic);
+}
 
 
-    /* =====================================================
-       CANVAS
-    ====================================================== */
-
-    function resizeCanvas() {
-
-        const ratio = Math.min(
-            window.devicePixelRatio || 1,
-            2
-        );
-
-        canvas.width = window.innerWidth * ratio;
-        canvas.height = window.innerHeight * ratio;
-
-        canvas.style.width = window.innerWidth + "px";
-        canvas.style.height = window.innerHeight + "px";
-
-        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    }
-
-    resizeCanvas();
-
-    window.addEventListener("resize", resizeCanvas);
+musicButton.addEventListener("click", toggleMusic);
 
 
-    /* =====================================================
-       PARTÍCULAS
-    ====================================================== */
+if (musicCardButton) {
 
-    class HeartParticle {
+    musicCardButton.addEventListener("click", toggleMusic);
 
-        constructor(x, y, burst = false) {
-
-            this.x = x;
-            this.y = y;
-
-            this.vx =
-                (Math.random() - .5) *
-                (burst ? 3.5 : .35);
-
-            this.vy =
-                (Math.random() - .5) *
-                (burst ? 3.5 : 0.8);
-
-            this.size =
-                Math.random() *
-                (burst ? 8 : 4) +
-                (burst ? 4 : 2);
-
-            this.life =
-                burst
-                    ? 1
-                    : Math.random() * .6 + .2;
-
-            this.decay =
-                burst
-                    ? Math.random() * .012 + .008
-                    : Math.random() * .002 + .0005;
-
-            this.rotation =
-                Math.random() * Math.PI * 2;
-
-            this.rotationSpeed =
-                (Math.random() - .5) * .02;
-
-            this.symbol =
-                Math.random() > .25
-                    ? "♡"
-                    : "✦";
-        }
+}
 
 
-        update() {
+/* ================================================= */
+/* CANVAS                                             */
+/* ================================================= */
 
-            this.x += this.vx;
-            this.y += this.vy;
-
-            this.vy -= .002;
-
-            this.rotation += this.rotationSpeed;
-
-            this.life -= this.decay;
-
-        }
+let width = window.innerWidth;
+let height = window.innerHeight;
 
 
-        draw() {
+function resizeCanvas() {
 
-            if (this.life <= 0) return;
+    width = window.innerWidth;
 
-            ctx.save();
+    height = window.innerHeight;
 
-            ctx.globalAlpha =
-                Math.max(this.life, 0) *
-                (Math.random() > .5 ? .45 : .7);
+    canvas.width = width * window.devicePixelRatio;
 
-            ctx.translate(
-                this.x,
-                this.y
-            );
+    canvas.height = height * window.devicePixelRatio;
 
-            ctx.rotate(this.rotation);
+    canvas.style.width = width + "px";
 
-            ctx.font =
-                `${this.size * 3}px Cormorant Garamond`;
+    canvas.style.height = height + "px";
 
-            ctx.fillStyle =
-                Math.random() > .25
-                    ? "#d78a9e"
-                    : "#c9a77b";
+    ctx.setTransform(
+        window.devicePixelRatio,
+        0,
+        0,
+        window.devicePixelRatio,
+        0,
+        0
+    );
 
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-
-            ctx.fillText(
-                this.symbol,
-                0,
-                0
-            );
-
-            ctx.restore();
-        }
-    }
+}
 
 
-    /* =====================================================
-       CREAR PARTÍCULAS
-    ====================================================== */
-
-    function createAmbientParticle() {
-
-        particles.push(
-            new HeartParticle(
-                Math.random() * window.innerWidth,
-                window.innerHeight + 20,
-                false
-            )
-        );
-    }
+resizeCanvas();
 
 
-    function createHeartBurst(x, y, amount = 20) {
+window.addEventListener("resize", resizeCanvas);
 
-        for (let i = 0; i < amount; i++) {
 
-            particles.push(
-                new HeartParticle(
-                    x,
-                    y,
-                    true
+/* ================================================= */
+/* CORAZONES FLOTANTES                                */
+/* ================================================= */
+
+const hearts = [];
+
+const heartCharacters = [
+    "♡",
+    "♡",
+    "♥",
+    "✦"
+];
+
+
+function random(min, max) {
+
+    return Math.random() * (max - min) + min;
+
+}
+
+
+function createHeart(
+    x = random(0, width),
+    y = height + random(10, 100),
+    burst = false
+) {
+
+    hearts.push({
+
+        x: x,
+
+        y: y,
+
+        size: burst
+            ? random(10, 24)
+            : random(8, 17),
+
+        speed: burst
+            ? random(.5, 2.5)
+            : random(.15, .55),
+
+        drift: random(-.35, .35),
+
+        rotation: random(-.5, .5),
+
+        rotationSpeed: random(-.01, .01),
+
+        opacity: random(.15, .55),
+
+        life: burst
+            ? 1
+            : random(.5, 1),
+
+        burst: burst,
+
+        char:
+            heartCharacters[
+                Math.floor(
+                    Math.random() *
+                    heartCharacters.length
                 )
-            );
-
-        }
-    }
-
-
-    /* =====================================================
-       LOOP DEL CANVAS
-    ====================================================== */
-
-    function animateCanvas() {
-
-        ctx.clearRect(
-            0,
-            0,
-            window.innerWidth,
-            window.innerHeight
-        );
-
-        if (Math.random() < .16) {
-            createAmbientParticle();
-        }
-
-        particles.forEach(
-            particle => {
-                particle.update();
-                particle.draw();
-            }
-        );
-
-        particles =
-            particles.filter(
-                particle => particle.life > 0
-            );
-
-        if (particles.length > 180) {
-            particles.splice(
-                0,
-                particles.length - 180
-            );
-        }
-
-        requestAnimationFrame(
-            animateCanvas
-        );
-    }
-
-    animateCanvas();
-
-
-    /* =====================================================
-       MOUSE
-    ====================================================== */
-
-    window.addEventListener("mousemove", event => {
-
-        mouse.x = event.clientX;
-        mouse.y = event.clientY;
-
-        if (Math.random() < .045) {
-
-            particles.push(
-                new HeartParticle(
-                    mouse.x,
-                    mouse.y,
-                    true
-                )
-            );
-
-        }
+            ]
 
     });
 
+}
 
-    /* =====================================================
-       CLICK = CORAZONES
-    ====================================================== */
 
-    document.addEventListener("click", event => {
+for (let i = 0; i < 35; i++) {
+
+    createHeart(
+        random(0, width),
+        random(0, height)
+    );
+
+}
+
+
+function drawHeart(heart) {
+
+    ctx.save();
+
+    ctx.translate(
+        heart.x,
+        heart.y
+    );
+
+    ctx.rotate(
+        heart.rotation
+    );
+
+    ctx.globalAlpha =
+        heart.opacity *
+        heart.life;
+
+    ctx.font =
+        `${heart.size}px Cormorant Garamond`;
+
+    ctx.textAlign = "center";
+
+    ctx.textBaseline = "middle";
+
+    ctx.fillStyle =
+        heart.char === "✦"
+            ? "#c9a77b"
+            : "#d28a9f";
+
+    ctx.fillText(
+        heart.char,
+        0,
+        0
+    );
+
+    ctx.restore();
+
+}
+
+
+function animateHearts() {
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    for (let i = hearts.length - 1; i >= 0; i--) {
+
+        const heart = hearts[i];
+
+
+        heart.y -= heart.speed;
+
+        heart.x +=
+            Math.sin(
+                heart.y * .008
+            ) * heart.drift;
+
+
+        heart.rotation +=
+            heart.rotationSpeed;
+
+
+        if (heart.burst) {
+
+            heart.life -= .012;
+
+        }
+
+
+        drawHeart(heart);
+
+
+        if (
+            heart.y < -50 ||
+            heart.life <= 0
+        ) {
+
+            hearts.splice(i, 1);
+
+        }
+
+    }
+
+
+    while (hearts.length < 35) {
+
+        createHeart();
+
+    }
+
+
+    requestAnimationFrame(
+        animateHearts
+    );
+
+}
+
+
+animateHearts();
+
+
+/* ================================================= */
+/* EXPLOSIÓN DE CORAZONES AL HACER CLICK             */
+/* ================================================= */
+
+function heartBurst(x, y) {
+
+    for (let i = 0; i < 12; i++) {
+
+        const heart = {
+
+            x: x,
+
+            y: y,
+
+            size: random(10, 22),
+
+            speed: random(.5, 2.5),
+
+            drift: random(-2, 2),
+
+            rotation: random(-1, 1),
+
+            rotationSpeed: random(-.05, .05),
+
+            opacity: random(.4, .9),
+
+            life: 1,
+
+            burst: true,
+
+            char:
+                Math.random() > .2
+                    ? "♡"
+                    : "✦"
+
+        };
+
+        hearts.push(heart);
+
+    }
+
+}
+
+
+document.addEventListener(
+    "click",
+    (event) => {
 
         if (
             event.target.closest("button") ||
             event.target.closest("a")
         ) {
+
             return;
+
         }
 
-        createHeartBurst(
+
+        heartBurst(
             event.clientX,
-            event.clientY,
-            10
+            event.clientY
         );
 
-    });
+    }
+);
 
 
-    /* =====================================================
-       REVEAL AL HACER SCROLL
-    ====================================================== */
+/* ================================================= */
+/* REVEAL AL HACER SCROLL                            */
+/* ================================================= */
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+const revealElements =
+    document.querySelectorAll(".reveal");
 
 
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
+const revealObserver =
+    new IntersectionObserver(
+        (entries) => {
 
-                entries.forEach(entry => {
+            entries.forEach(
+                (entry) => {
 
-                    if (entry.isIntersecting) {
+                    if (
+                        entry.isIntersecting
+                    ) {
 
                         entry.target.classList.add(
                             "visible"
@@ -388,56 +465,133 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     }
 
-                });
+                }
+            );
 
-            },
-            {
-                threshold: .12
+        },
+        {
+            threshold: .12
+        }
+    );
+
+
+revealElements.forEach(
+    (element) => {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+
+
+/* ================================================= */
+/* PARALLAX SUAVE                                    */
+/* ================================================= */
+
+let ticking = false;
+
+
+function handleParallax() {
+
+    const scroll =
+        window.scrollY;
+
+
+    document
+        .querySelectorAll(".hero-glow")
+        .forEach(
+            (element, index) => {
+
+                const movement =
+                    scroll *
+                    (index === 0
+                        ? .08
+                        : -.05);
+
+                element.style.transform =
+                    `translateY(${movement}px)`;
+
             }
         );
 
 
-    revealElements.forEach(
-        element =>
-            revealObserver.observe(element)
-    );
+    ticking = false;
+
+}
 
 
-    /* =====================================================
-       PARALLAX SUTIL
-    ====================================================== */
+window.addEventListener(
+    "scroll",
+    () => {
 
-    const decorations =
-        document.querySelectorAll(
-            ".hero-decoration"
-        );
+        if (!ticking) {
+
+            window.requestAnimationFrame(
+                handleParallax
+            );
+
+            ticking = true;
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
 
 
-    window.addEventListener(
-        "mousemove",
-        event => {
+/* ================================================= */
+/* NAVEGACIÓN SUAVE                                  */
+/* ================================================= */
 
-            const x =
-                (event.clientX /
-                    window.innerWidth -
-                    .5);
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(
+        (link) => {
 
-            const y =
-                (event.clientY /
-                    window.innerHeight -
-                    .5);
+            link.addEventListener(
+                "click",
+                (event) => {
 
-            decorations.forEach(
-                (element, index) => {
+                    const targetId =
+                        link.getAttribute("href");
 
-                    const strength =
-                        (index + 1) * 8;
 
-                    element.style.transform =
-                        `translate(
-                            ${x * strength}px,
-                            ${y * strength}px
-                        )`;
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+                    if (!target) {
+
+                        return;
+
+                    }
+
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
 
                 }
             );
@@ -446,110 +600,156 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* =====================================================
-       SUAVIZAR ENLACES
-    ====================================================== */
+/* ================================================= */
+/* PAUSAR MÚSICA SI LA PÁGINA NO ESTÁ VISIBLE       */
+/* ================================================= */
 
-    document.querySelectorAll(
-        'a[href^="#"]'
-    ).forEach(link => {
+document.addEventListener(
+    "visibilitychange",
+    () => {
 
-        link.addEventListener(
-            "click",
-            event => {
+        if (
+            document.hidden &&
+            !bgMusic.paused
+        ) {
 
-                const target =
-                    document.querySelector(
-                        link.getAttribute("href")
-                    );
+            bgMusic.pause();
 
-                if (!target) return;
+            musicPlaying = false;
 
-                event.preventDefault();
+            updateMusicUI();
 
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+        }
 
-            }
-        );
-
-    });
+    }
+);
 
 
-    /* =====================================================
-       EFECTO AL LLEGAR AL FINAL
-    ====================================================== */
+/* ================================================= */
+/* EFECTO FINAL                                      */
+/* ================================================= */
 
-    const finalSection =
-        document.querySelector(
-            ".final-words-section"
-        );
+const finalSection =
+    document.getElementById("final");
 
 
-    const finalObserver =
-        new IntersectionObserver(
-            entries => {
+let finalTriggered = false;
 
-                entries.forEach(entry => {
 
-                    if (entry.isIntersecting) {
+const finalObserver =
+    new IntersectionObserver(
+        (entries) => {
 
-                        createHeartBurst(
-                            window.innerWidth / 2,
-                            window.innerHeight / 2,
-                            45
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting &&
+                        !finalTriggered
+                    ) {
+
+                        finalTriggered = true;
+
+
+                        setTimeout(
+                            () => {
+
+                                for (
+                                    let i = 0;
+                                    i < 25;
+                                    i++
+                                ) {
+
+                                    createHeart(
+                                        random(
+                                            width * .25,
+                                            width * .75
+                                        ),
+                                        height * .75,
+                                        true
+                                    );
+
+                                }
+
+                            },
+                            400
                         );
 
                     }
 
-                });
+                }
+            );
 
-            },
-            {
-                threshold: .4
-            }
-        );
+        },
+        {
+            threshold: .35
+        }
+    );
 
 
-    if (finalSection) {
-        finalObserver.observe(
-            finalSection
-        );
+if (finalSection) {
+
+    finalObserver.observe(
+        finalSection
+    );
+
+}
+
+
+/* ================================================= */
+/* MENSAJE DE AUDIO                                  */
+/* ================================================= */
+
+bgMusic.addEventListener(
+    "play",
+    () => {
+
+        musicPlaying = true;
+
+        updateMusicUI();
+
     }
+);
 
 
-    /* =====================================================
-       VINILO / MÚSICA
-    ====================================================== */
+bgMusic.addEventListener(
+    "pause",
+    () => {
 
-    music.addEventListener(
-        "play",
-        () => {
+        musicPlaying = false;
 
-            musicPlaying = true;
-            updateMusicUI();
+        updateMusicUI();
 
-        }
-    );
+    }
+);
 
 
-    music.addEventListener(
-        "pause",
-        () => {
+/* ================================================= */
+/* CARGA INICIAL                                     */
+/* ================================================= */
 
-            musicPlaying = false;
-            updateMusicUI();
+window.addEventListener(
+    "load",
+    () => {
 
-        }
-    );
+        document
+            .querySelectorAll(".hero .reveal")
+            .forEach(
+                (element) => {
 
+                    setTimeout(
+                        () => {
 
-    /* =====================================================
-       INICIO
-    ====================================================== */
+                            element.classList.add(
+                                "visible"
+                            );
 
-    updateMusicUI();
+                        },
+                        700
+                    );
 
-});
+                }
+            );
+
+    }
+);
